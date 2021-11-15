@@ -4,9 +4,11 @@ const Task = require('../model/index')
 
 //  Rota de GET
 router.get('/tasks', (req, res) => {
-    Task.find().sort('+data').exec((err, data) => {
+    Task.find().sort('-data').exec((err, data) => {
         if(err) return res.send({ message: 'Erro na consulta Tasks'});
-        return res.status(200).json(data);
+        let order = data.slice(0).reverse();
+        console.log(order)
+        return res.status(200).json(order);
     });
 });
 
