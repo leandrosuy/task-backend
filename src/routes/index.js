@@ -4,7 +4,7 @@ const Task = require('../model/index')
 
 //  Rota de GET
 router.get('/tasks', (req, res) => {
-    Task.find({}, (err, data) => {
+    Task.find().sort('+data').exec((err, data) => {
         if(err) return res.send({ message: 'Erro na consulta Tasks'});
         return res.status(200).json(data);
     });
